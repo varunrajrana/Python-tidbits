@@ -1,17 +1,27 @@
-class Cylinder:
+class Account:
     
-    def __init__(self,height=1,radius=1):
-        self.h=height
-        self.r=radius
-        
-    def volume(self):
-        volume=3.14*(self.r**2)*self.h
-        print(volume)
+    def __init__(self,owner,balance):
+        self.owner=owner
+        self.balance=balance
     
-    def surface_area(self):
-        sa=(2*3.14*self.r*self.h)+(2*3.14*self.r**2)
-        print(sa)
+    def __str__(self):
+        return ('Account owner: '+ str(self.owner))+"\n" +('Account balance:'+str(self.balance))
 
-c = Cylinder(2,3)
+    def deposit(self,amtadded):
+        self.balance+=amtadded
+        print("Deposit Accepted. New balance: "+str(self.balance))
 
-c.volume()
+    def withdraw(self,amtwith):
+        if (self.balance>=amtwith):
+            self.balance-=amtwith
+            print("Withdrawl Accepted. New balance: "+str(self.balance))
+        else:
+            print("Funds Unavailable! Current balance: "+str(self.balance))
+
+acct1=Account('Varun',100)
+
+print(acct1)
+
+acct1.deposit(100)
+
+acct1.withdraw(400)
